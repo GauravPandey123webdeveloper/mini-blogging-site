@@ -100,7 +100,7 @@ Refer below sample
 ```yaml
 {
   status: false,
-  msg: ""
+  message: ""
 }
 ```
 
@@ -109,22 +109,123 @@ Refer below sample
 
 
 ## Collections
+
+### Author 
+```yaml
+{
+    "status": true,
+    "data": {
+        "_id": "63edd170875e5650d89ab9b8",
+        "fname": "John",
+        "lname": "Wick",
+        "title": "Mr",
+        "email": "john4614@gmail.com",
+        "password": "pass1234",
+        "createdAt": "2023-02-16T06:47:12.993Z",
+        "updatedAt": "2023-02-16T06:47:12.993Z",
+        "__v": 0
+    }
+}
+```
+
 ### Blogs
 ```yaml
 {
-  "title": "How to win friends",
-  "body": "Blog body",
-  "tags": ["Book", "Friends", "Self help"],
-  "category": "Book",
-  "subcategory": ["Non fiction", "Self Help"],
-  "published": false,
-  "publishedAt": "", // if published is true publishedAt will have a date 2021-09-17T04:25:07.803Z
-  "deleted": false,
-  "deletedAt": "", // if deleted is true deletedAt will have a date 2021-09-17T04:25:07.803Z,
-  "createdAt": "2021-09-17T04:25:07.803Z",
-  "updatedAt": "2021-09-17T04:25:07.803Z",
+  status: true,
+  data: {
+        "title": "How to win friends",
+        "body": "Blog body",
+        "tags": ["Book", "Friends", "Self help"],
+        "category": "Book",
+        "subcategory": ["Non fiction", "Self Help"],
+        "published": false,
+        "publishedAt": "", // if published is true publishedAt will have a date 2021-09-17T04:25:07.803Z
+        "deleted": false,
+        "deletedAt": "", // if deleted is true deletedAt will have a date 2021-09-17T04:25:07.803Z,
+        "createdAt": "2021-09-17T04:25:07.803Z",
+        "updatedAt": "2021-09-17T04:25:07.803Z",
+        }
 }
 ```
+### Get Blogs Response Structure
+```yaml
+{
+    "status": true,
+    "message": "Blogs list",
+    "data": [
+        {
+            "tags": ["programming","coding"],
+            "subcategory": ["web development","mobile development"],
+            "isPublished": true,
+            "publishedAt": null,
+            "isDeleted": false,
+            "deletedAt": null,
+            "_id": "626f6af87528876cb6361cfe",
+            "title": "Extreme Developer 101",
+            "body": "Code more, learn more.",
+            "authorId": "626f6aec7528876cb6361cfa",
+            "category": "technology",
+            "createdAt": "2022-05-02T05:24:08.546Z",
+            "updatedAt": "2022-05-02T05:27:46.791Z",
+            "__v": 0
+        },
+        {
+            "tags": ["movies"],
+            "subcategory": ["aliens"],
+            "isPublished": true,
+            "publishedAt": "2022-05-02T05:49:04.679Z",
+            "isDeleted": false,
+            "deletedAt": null,
+            "_id": "626f70d07528876cb6361d2d",
+            "title": "Best sci-fi movies of the year",
+            "body": "blah blah",
+            "authorId": "626f6d127528876cb6361d09",
+            "category": "entertainment",
+            "createdAt": "2022-05-02T05:49:04.681Z",
+            "updatedAt": "2022-05-02T05:49:04.681Z",
+            "__v": 0
+        },
+}]
+
+```
+### Updated Blog Response Structure
+```yaml
+{
+    "status": true,
+    "message": "Blog updated successfully",
+    "data": {
+        "tags": [
+            "movies",
+            "story"
+        ],
+        "subcategory": [
+            "aliens",
+            "cinema"
+        ],
+        "isPublished": false,
+        "publishedAt": null,
+        "isDeleted": false,
+        "deletedAt": null,
+        "_id": "63edd36c875e5650d89ab9c1",
+        "title": "new title",
+        "body": "new body",
+        "authorId": "63edd170875e5650d89ab9b8",
+        "category": "novel",
+        "createdAt": "2023-02-16T06:55:40.352Z",
+        "updatedAt": "2023-02-16T06:55:43.976Z",
+        "__v": 0
+    }
+}
+```
+### Delete Blog Response Structure
+```yaml
+{
+  status: true,
+  message: ""
+}
+```
+
+
 ### Successful Login Response structure
 ```yaml
 {
