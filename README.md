@@ -31,7 +31,7 @@ Repository for backend cohort - Uranium
 
 ### GET /blogs
 - Returns all blogs in the collection that aren't deleted and are published
-- Return the HTTP status 200 if any documents are found. The response structure should be like [this](#successful-response-structure) 
+- Return the HTTP status 200 if any documents are found. The response structure should be like [this](#Get-Blogs-Response-Structure) 
 - If no documents are found then return an HTTP status 404 with a response like [this](#error-response-structure) 
 - Filter blogs list by applying filters. Query param can have any combination of below filters.
   - By author Id
@@ -44,7 +44,7 @@ example of a query url: blogs?filtername=filtervalue&f2=fv2
 - Updates a blog by changing the its title, body, adding tags, adding a subcategory. (Assuming tag and subcategory received in body is need to be added)
 - Updates a blog by changing its publish status i.e. adds publishedAt date and set published to true
 - Check if the blogId exists (must have isDeleted false). If it doesn't, return an HTTP status 404 with a response body like [this](#error-response-structure)
-- Return an HTTP status 200 if updated successfully with a body like [this](#successful-response-structure) 
+- Return an HTTP status 200 if updated successfully with a body like [this](#Updated-Blog-Response-Structure) 
 - Also make sure in the response you return the updated blog document. 
 
 ### DELETE /blogs/:blogId
