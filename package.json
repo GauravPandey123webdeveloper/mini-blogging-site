@@ -1,0 +1,28 @@
+{
+  "name": "blogging-site-mini-project",
+  "version": "1.0.0",
+  "description": "this is the mini blogging site on which authors can register and can create/read/update/delete  blogs ",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GauravPandey123webdeveloper/mini-blogging-site.git"
+  },
+  "keywords": [
+    "mini-blog-website"
+  ],
+  "author": "Gaurav pandey, Himanshu jha, Umme Habeeba Ansari, Rushikesh Khare",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GauravPandey123webdeveloper/mini-blogging-site/issues"
+  },
+  "homepage": "https://github.com/GauravPandey123webdeveloper/mini-blogging-site#readme",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^7.2.1"
+  }
+}
