@@ -4,7 +4,7 @@
   "description": "this is the mini blogging site on which authors can register and can create/read/update/delete  blogs ",
   "main": "index.js",
   "scripts": {
-    "test": "node index.js"
+    "test": "node src/index.js"
   },
   "repository": {
     "type": "git",
