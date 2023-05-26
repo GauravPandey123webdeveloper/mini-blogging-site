@@ -5,10 +5,10 @@ const router=express.Router()
 router.get('/test', function(req,res){
     res.send("hello genius")
 })
-router.post('/authors',authorController.createAuthor)//himanshu jha
-router.post('/blogs', blogController.createBlog)//rishikesh khare
-// router.get('/authors',authorController.getAuthor)//gaurav pandey
-router.get('/blogs',blogController.getBlogs)//umme habeeba ansari
+router.post('/authors',authorController.createAuthor)
+router.post('/blogs', blogController.createBlog)
+router.post('/userLogin',authorController.userLogin)
+router.get('/blogs',blogController.getBlogs)
 // router.put('/authors',authorController.updateAuthor)
 // router.delete('/authors',authorController.deleteAuthor)
 router.put('/blogs/:blogId',blogController.updateBlog)

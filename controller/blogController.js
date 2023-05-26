@@ -12,11 +12,7 @@ const createBlog = async function (req, res) {
         if (!checkValidAuthId) {
             return res.status(404).json({ status: false, msg: "incorrect authorId " })
         }
-        // const email = req.body.email;
-        // const passwordRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-        // if (!passwordRegex.test(email)) {
-        //     return res.status(400).send({ msg: "invalid email" });
-        // }
+        
         
         const creatData = await BlogModel.create(req.body);
         return res.status(201).json({ status: true, data: creatData });
