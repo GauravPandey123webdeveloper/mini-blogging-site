@@ -3,21 +3,21 @@ const objectId=mongoose.Schema.Types.ObjectId;
 const blogSchema= new mongoose.Schema({
      title: {
         type:String,
-        required:true
+        required:[true,"Please fill title"]
      },
      body: {
         type:mongoose.Schema.Types.Mixed,
-        required:true
+        required:[true,"Please write something in your blog body"]
      }, 
      authorId: {
         type:objectId,
-        required:true,
+        required:[true,"Please fill the author id"],
         ref:'AuthorCollection'
      },
-      tags: [String], 
+     tags: [String], 
      category: {
         type:String,
-        required:true
+        required:[true,"Please fill the categories"]
      }, 
      subcategory: [String], 
      deletedAt:{
@@ -36,5 +36,5 @@ const blogSchema= new mongoose.Schema({
         type:Boolean,
         default:'false'
      }
-})
+},{timestamps:true})
 module.exports=mongoose.model("blogCollection",blogSchema)
