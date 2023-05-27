@@ -10,7 +10,7 @@ const createAuthor = async function (req, res) {
             return res.send("Author is already exist")
         }
         const email = req.body.email;
-        const passwordRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        const passwordRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!passwordRegex.test(email)) {
             return res.status(400).send({ msg: "invalid email" });
         }
@@ -43,7 +43,7 @@ const userLogin = async function (req, res) {
             authorName: validateData.fname
         }, secretKey);
         res.status(200).send({status: true, data: token});
-        //token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JJZCI6IjY0NmZhYTQwODRmMTQ4MTE5Njg3ZTMxNSIsImF1dGhvck5hbWUiOiJSdXNoaWtlc2giLCJpYXQiOjE2ODUwNzk5NDJ9.mqf-JjYjiWWB1n_shKGS0guExyliDP7NTS0zY2mMcOs
+        
     } catch (error) {
         res.status(500).send({err: error})
     }
