@@ -44,7 +44,7 @@ const getBlog = async function (req, res) {
     // if user has provided queries in query param 
     else {
         const filters = {};
-    // inserting all the entered data of query param in filter
+    // inserting all the entered data of query param in filter object
         if (authorId) filters.authorId = authorId;
         if (category) filters.category = category;
         if (subCat) filters.subcategory = { $in: subCat };
@@ -83,8 +83,9 @@ const updateBlog = async function (req, res) {
     }
 };
 
-// deleting blog
+// deleting blog by path param
 const deleteBlogByParam = async function (req, res) {
+    try{
     const id = req.params.blogId
     const blog = await blogModel.findOne({ _id: id, isDeleted: 'true' })
     if (!blog) {
@@ -93,9 +94,13 @@ const deleteBlogByParam = async function (req, res) {
     } else {
         res.status(404).send({ status: true, message: "blog not found" })
     }
+}catch(err){
+    res.status(500).send({status:false, message:"internal server error"})
+}
 }
 // deleting blog by query param 
 const deleteBlogByQuery = async function (req, res) {
+    try{
     let qparams = req.query;
     qparams.isDeleted = 'false';
     let deletedData = await blogModel.updateMany(qparams, { isDeleted: true })
@@ -104,6 +109,8 @@ const deleteBlogByQuery = async function (req, res) {
         return res.status(200).send({ status: true, msg: `deleted ${deletedCount} blog` })
     }
     return res.status(404).send({ status: false, msg: "no data is found to be deleted" })
-
+    }catch(err){
+        res.status(500).send({status: false, message:" internal server error"})
+    }
 }
 module.exports = { createBlog, getBlog, updateBlog, deleteBlogByParam, deleteBlogByQuery }

@@ -22,7 +22,7 @@ const blogSchema= new mongoose.Schema({
      subcategory: [String], 
      deletedAt:{
         type:Date,
-        default: null
+        default: " "
      },
      isDeleted: {
         type:Boolean,
@@ -30,7 +30,7 @@ const blogSchema= new mongoose.Schema({
      }, 
      publishedAt:{
         type: Date, 
-        default:null
+        default: " "
     },
      isPublished: {
         type:Boolean,

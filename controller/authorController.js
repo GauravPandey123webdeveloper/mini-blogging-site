@@ -35,7 +35,7 @@ const getAuthor = async function (req, res) {
     }
     //if author is available
     else {
-        res.send({ status: true, data: author });
+        res.status(200).send({ status: true, data: author });
     }
 };
 // creating login by generating jwt token
@@ -43,7 +43,7 @@ const userLogin = async function (req, res) {
     try {
         const validateData = await authorModel.findOne({
             email: req.body.email,
-            password: req.body.password,
+            password: req.body.password
         });
         // if credetials are incorrect
         if (!validateData) {
