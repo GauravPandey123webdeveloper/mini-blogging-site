@@ -7,6 +7,9 @@ const blogController=require('../controller/blogController')
 //importing middlewares
 const {authentication, authorisation}= require('../middleware/authentication')
 const router=express.Router()
+router.get('/test', function(req,res){
+    res.send("hello ")
+})
 //creating author 
 router.post('/authors',authorController.createAuthor)
 //creating blogs

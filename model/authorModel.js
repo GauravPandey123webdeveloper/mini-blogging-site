@@ -6,14 +6,32 @@ var validateEmail = function(email) {
 const authorSchema= new mongoose.Schema({
     fname: {
         type:String,
+        trim: true,
+        validate: {
+            validator: function (value) {
+                const nameRegex = /^[A-Za-z\s]+$/;
+                return nameRegex.test(value);
+            },
+            message: 'Name should only contain alphabets and spaces.'
+        },
         required:[true,"Please fill first name"]
     },
     lname: {
         type:String,
+        trim: true,
+        validate: {
+            validator: function (value) {
+                const nameRegex = /^[A-Za-z\s]+$/;
+                return nameRegex.test(value);
+            },
+            message: 'Name should only contain alphabets and spaces.'
+        },
         required:[true,"Please fill last name"]
     },
     title:{
         type:String,
+        minLength:1,
+        maxLength:150,
         required:[true,"Please fill title"],
         enum:['Mr','Mrs','Miss']
     },
@@ -28,6 +46,8 @@ const authorSchema= new mongoose.Schema({
     },
     password:{
         type:String,
+        minLength:8,
+        maxLength:30,
         required:[true,"Please fill the password"]
     }
 })

@@ -19,9 +19,13 @@ const createBlog = async function (req, res) {
             res.status(201).send({ status: true, data: blogData })
         }
     }
-    catch (err) {
-        // sending error message for invalid data entry
-        res.status(400).send({ status: false, message: "Please enter the require and valid data" })
+    catch (error) {
+        if (error.message.includes("validation")) {
+            return res.status(400).send({ status: false, message: error.message })
+        }
+        else {
+            return res.status(500).send({ status: false, message: error.message })
+        }
     }
 }
 // getting blogs based on the condition 
@@ -61,7 +65,10 @@ const getBlog = async function (req, res) {
 const updateBlog = async function (req, res) {
     const { title, body, tags, category, subcategory } = req.body;
     const blogId = req.params.blogId;
-      //main code if id is valid 
+    if(!tags||!subcategory){
+       return res.status(400).send({status:false, message:"tags and subcategory can't be empty"})
+    }
+          //main code if id is valid 
     try {
         const updatedBlog = await blogModel.findOneAndUpdate(
             { _id: blogId, isDeleted: false },
@@ -90,7 +97,7 @@ const deleteBlogByParam = async function (req, res) {
     const blog = await blogModel.findOne({ _id: id, isDeleted: 'true' })
     if (!blog) {
         const deletedBlog = await blogModel.findOneAndUpdate({ _id: id }, { $set: { isDeleted: 'true', deletedAt: Date.now() } })
-        res.status(200).send({ status: true, message: "deleted successful" })
+        res.status(200).send({ status: true, message: "deleted successfully" })
     } else {
         res.status(404).send({ status: true, message: "blog not found" })
     }

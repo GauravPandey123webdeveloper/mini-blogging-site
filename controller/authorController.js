@@ -20,10 +20,16 @@ const createAuthor = async function (req, res) {
             const createdAuthor = await authorModel.create(author);
             res.status(201).send({ status: true, data: createdAuthor });
         }
-    } catch (err) {
-        res
-            .status(400)
-            .send({ status: false, message: "Please fill required data" });
+    } catch (error) {
+        if (error.message.includes("validation")) {
+            return res.status(400).send({ status: false, message: error.message })
+        }
+        else if (error.message.includes("duplicate")) {
+            return res.status(400).send({ status: false, message: "emailId is not unique" })
+        }
+        else {
+            return res.status(500).send({ status: false, message: error.message })
+        }
     }
 };
 // getting all the authors

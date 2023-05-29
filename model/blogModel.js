@@ -3,10 +3,14 @@ const objectId=mongoose.Schema.Types.ObjectId;
 const blogSchema= new mongoose.Schema({
      title: {
         type:String,
+        minLength:1,
+        maxLength:150,
         required:[true,"Please fill title"]
      },
      body: {
         type:mongoose.Schema.Types.Mixed,
+        minLength:1,
+        maxLength:10000,
         required:[true,"Please write something in your blog body"]
      }, 
      authorId: {
@@ -17,12 +21,14 @@ const blogSchema= new mongoose.Schema({
      tags: [String], 
      category: {
         type:String,
+        minLength:1,
+        maxLength:300,
         required:[true,"Please fill the categories"]
      }, 
      subcategory: [String], 
      deletedAt:{
         type:Date,
-        default: " "
+        default: null
      },
      isDeleted: {
         type:Boolean,
@@ -30,7 +36,7 @@ const blogSchema= new mongoose.Schema({
      }, 
      publishedAt:{
         type: Date, 
-        default: " "
+        default: null
     },
      isPublished: {
         type:Boolean,
