@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const authorSchema = new mongoose.Schema({
     fname: {
         type: String,
-         trim: true,
+        trim: true,
         required: "Please fill first name"
     },
     lname: {

@@ -3,9 +3,54 @@ const authorModel = require("../model/authorModel");
 //importing jsonwebtoken for authentication
 const jwt = require("jsonwebtoken");
 //creating author
+const isValid = function (value) {
+    if (typeof value === 'undefined' || value === null) return false
+    if (typeof value === 'string' && value.trim().length === 0) return false
+    return true
+}
+const isvalidTitle = function (title) {
+    return ['Mr', 'Mrs', 'Miss', 'Mast'].indexOf(title) !== -1
+}
+const isValidRequestBody = function (requestBody) {
+    return Object.keys(requestBody).length > 0
+}
 const createAuthor = async function (req, res) {
     try {
         const author = req.body;
+        if (!isValidRequestBody(author)) {
+            res.status(400).send({ status: false, message: "invalid request parameters please provide author details" })
+            return
+        }
+        const { fname, lname, title, email, password } = author
+        if (!isValid(fname)) {
+            res.status(400).send({ status: false, message: "first name is required" })
+            return
+        }
+        if (!isValid(lname)) {
+            res.status(400).send({ status: false, message: "Last name is required" })
+            return
+        }
+        if (!isValid(title)) {
+            res.status(400).send({ status: false, message: "title is required" })
+            return
+        }
+        if (!isvalidTitle(title)) {
+            res.status(400).send({ status: false, message: "Title should be among Mr, Mrs, Miss, Mast" })
+            return
+        }
+        if (!isValid(email)) {
+            res.status(400).send({ status: false, message: "Email is required" })
+            return
+        }
+        if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email))) {
+            res.status(400).send({ status: false, message: "Email should be a valid email address" })
+            return
+        }
+        if (!isValid(password)) {
+            res.status(400).send({ status: false, message: "password is required" })
+            return
+        }
+        
         const authorEmail = req.body.email;
         //checking author is available or not
         const availAuthor = await authorModel.findOne({ email: authorEmail });
