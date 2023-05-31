@@ -12,7 +12,7 @@ const createAuthor = async function (req, res) {
         // if auhtor is available
         if (availAuthor) {
             res
-                .status(403)
+                .status(400)
                 .send({ status: false, message: "Author is already exist" });
         }
         //if author is not available then creating new author
